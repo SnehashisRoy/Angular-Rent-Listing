@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AppData } from 'src/app/core/app-data/app-data';
 import { from, Subscription} from 'rxjs';
 import { filter, flatMap} from 'rxjs/operators';
+import { ListingsService } from 'src/app/core/services/listings.service';
 
 @Component({
   selector: 'app-upload-images',
@@ -21,7 +22,10 @@ export class UploadImagesComponent implements OnInit {
 
   private lsitingSubscription: Subscription;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private appData: AppData) {
+  constructor(private http: HttpClient,
+              private route: ActivatedRoute, 
+              private listingService: ListingsService, 
+              private appData: AppData) {
 
     this.lsitingSubscription =  this.appData.listingsObs$.pipe(
       flatMap ((v)=>{
@@ -59,8 +63,17 @@ export class UploadImagesComponent implements OnInit {
 
   }
 
-  removeImage(){
-    
+  removeImage(id: number){
+
+    this.listingService.deleteImage(id).subscribe(
+      (listing:any) => {
+        this.listing = listing.data;
+       this.appData.updateListings(listing.data);
+     }, 
+     err => console.log(err)
+
+    )
+
 
   }
   onRemoveImage(i){
@@ -92,20 +105,16 @@ export class UploadImagesComponent implements OnInit {
     }
   }
   onSubmit(){
-    console.log(this.uploadImages);
     // manually attaching the image data to the input variable
     this.uploadImages.value['images']= Object.values(this.files); // converting object to array
-
-    this.http.post('http://localhost:8085/api/listing/upload/'+ this.route.snapshot.params.id, this.uploadImages.value).subscribe(
-      (listing:any) => {
+    
+    this.listingService.uploadImages(this.route.snapshot.params.id,this.uploadImages.value ).subscribe(
+        (listing:any) => {
          this.listing = listing.data;
-
         this.appData.updateListings(listing.data);
-
-        console.log(this.appData.listings);
-
-      }
-      );
+      }, 
+      err => console.log(err)
+    )
 
 
   }

@@ -5,6 +5,7 @@ import { from, Subscription} from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ListingsService } from 'src/app/core/services/listings.service';
 
 @Component({
   selector: 'app-edit-listing',
@@ -22,7 +23,8 @@ export class EditListingComponent implements OnInit, OnDestroy {
 
   constructor(private appData: AppData, 
               private route: ActivatedRoute,
-              private http: HttpClient) {
+              private http: HttpClient,
+              private listingService: ListingsService) {
 
    this.lsitingSubscription =  this.appData.listingsObs$.pipe(
       flatMap((v)=>{
@@ -78,13 +80,15 @@ export class EditListingComponent implements OnInit, OnDestroy {
 
 
   onSubmit(){
-    console.log(this.editListing);
-    this.http.post('http://localhost:8085/api/listing/'+ this.route.snapshot.params.id, this.editListing.value).subscribe(
+   
+    this.listingService.updateListing(this.route.snapshot.params.id, this.editListing.value).subscribe(
       (listing:any) => {
-        this.listing = listing.data;
-        this.appData.updateListings(listing.data);
-
-      });
+            this.listing = listing.data;
+            this.appData.updateListings(listing.data);
+    
+          },
+          err => console.log(err)
+    )
 
   }
   // onAddHighlights(){

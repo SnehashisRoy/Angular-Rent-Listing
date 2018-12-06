@@ -7,6 +7,7 @@ import { UserDashboardComponent } from './user-dashboard.component';
 import { EditListingComponent } from './edit-listing/edit-listing.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UploadImagesComponent } from './upload-images/upload-images.component';
+import { ListingsService } from '../core/services/listings.service';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { UploadImagesComponent } from './upload-images/upload-images.component';
     UserDashboardRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [UserDashboardComponent, EditListingComponent, UploadImagesComponent]
+  declarations: [UserDashboardComponent, EditListingComponent, UploadImagesComponent],
+  providers:[ListingsService]
 })
 export class UserDashboardModule { }
