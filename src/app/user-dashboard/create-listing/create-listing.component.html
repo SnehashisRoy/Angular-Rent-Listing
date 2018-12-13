@@ -1,0 +1,195 @@
+<!-- <p *ngIf="listing">
+    {{listing.title}}
+  </p> -->
+  
+  
+  
+  <div class="col-md-4 col-md-offset-4">
+      <form [formGroup]="listingStepOne" (ngSubmit)="onSubmitStepOne(1)" *ngIf="step == 1">
+          <div class="form-group">
+            <label for="title">Email address</label>
+            <input formControlName="title" type="text" class="form-control" id="title" placeholder="Title">
+            <div class="alert alert-danger" *ngIf="title.invalid && title.touched">Name is required</div>
+          </div>
+          
+         <div class="form-group">
+              <label for="address">Address</label>
+              <input formControlName="address" type="text" class="form-control" id="address" placeholder="Address">
+              <div class="alert alert-danger" *ngIf="address.invalid && address.touched">
+                <p *ngIf="address.errors.required">Address is required. </p>
+  
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="city">City</label>
+              <input formControlName="city" type="text" class="form-control" id="city" placeholder="City">
+              <div class="alert alert-danger" *ngIf="city.invalid && city.touched">
+                <p *ngIf="City.errors.required">City is required. </p>
+  
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="postal">Postal Code</label>
+              <input formControlName="postal" type="text" class="form-control" id="postal" placeholder="Postal Code">
+              <div class="alert alert-danger" *ngIf="postal.invalid && postal.touched">
+                <p *ngIf="postal.errors.required">Postal Conde is required. </p>
+  
+              </div>
+          </div>
+          <div class="form-group">
+              <input type="submit"value="Next">
+            </div>
+      </form>
+      <form [formGroup]="listingStepTwo" (ngSubmit)="onSubmitStepTwo(2)" *ngIf="step == 2">
+          <div class="form-group">
+              <label for="description">Description</label>
+              <textarea formControlName="description" class="form-control" rows="3"></textarea>
+              <div class="alert alert-danger" *ngIf="description.invalid && description.touched">
+                  <p *ngIf="description.errors.required">Description is required. </p>
+    
+                </div>
+          </div>
+  
+          <div class="form-group">
+              <label for="type">Type</label>
+              <select formControlName="type" class="form-control">
+                  <option value="basement">basement</option>
+                  <option value="apartment">apartment</option>
+                </select>
+              <div class="alert alert-danger" *ngIf="type.invalid && type.touched">
+                  <p *ngIf="type.errors.required">Type is required. </p>
+    
+                </div>
+          </div>
+          <div class="form-group">
+              <label for="bedrooms">bedrooms</label>
+              <select formControlName="bedrooms" class="form-control">
+                  <option value="">Please Select</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                </select>
+              <div class="alert alert-danger" *ngIf="bedrooms.invalid && bedrooms.touched">
+                  <p *ngIf="bedrooms.errors.required">Bedroom is required. </p>
+    
+                </div>
+          </div>
+  
+          <div class="form-group">
+              <label for="bathrooms">Bathrooms</label>
+              <select formControlName="bathrooms" class="form-control">
+                  <option value="">Please Select</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                </select>
+              <div class="alert alert-danger" *ngIf="bathrooms.invalid && bathrooms.touched">
+                  <p *ngIf="bathrooms.errors.required">Bathroom is required. </p>
+    
+                </div>
+          </div>
+          <button (click)="step = 1">Previous</button>
+          <div class="form-group">
+              <input type="submit"value="submit">
+            </div>
+      </form>
+      <form [formGroup]="listingStepThree" (ngSubmit)="onSubmitStepThree(3)" *ngIf="step == 3">
+          <div class="form-group">
+              <b>Furnished</b>
+              <div class="radio">
+                    
+                  <label>
+                      <input type="radio" formControlName="furnished" id  value="na">
+                       Not Known
+                    </label>
+                </div>
+              <div class="radio">
+                  <label>
+                    <input type="radio" formControlName="furnished"  value="yes" >
+                     Yes
+                  </label>
+                  
+                </div>
+                <div class="radio">
+                    
+                    <label>
+                        <input type="radio" formControlName="furnished"  value="no">
+                         No
+                      </label>
+                  </div>
+              
+          </div>
+          <div class="form-group">
+              <b>Pet Friendly</b>
+              <div class="radio">
+                    
+                  <label>
+                      <input type="radio" formControlName="pet_friendly" id  value="na">
+                       Not Known
+                    </label>
+                </div>
+              <div class="radio">
+                  <label>
+                    <input type="radio" formControlName="pet_friendly"  value="yes" >
+                     Yes
+                  </label>
+                  
+                </div>
+                <div class="radio">
+                    
+                    <label>
+                        <input type="radio" formControlName="pet_friendly"  value="no">
+                         No
+                      </label>
+                  </div>
+              
+          </div>
+          <div class="form-group">
+              <b>Parking</b>
+              <div class="radio">
+                    
+                  <label>
+                      <input type="radio" formControlName="parking" id  value="na">
+                       Not Known
+                    </label>
+                </div>
+              <div class="radio">
+                  <label>
+                    <input type="radio" formControlName="parking"  value="yes" >
+                     Yes
+                  </label>
+                  
+                </div>
+                <div class="radio">
+                    
+                    <label>
+                        <input type="radio" formControlName="parking"  value="no">
+                         No
+                      </label>
+                  </div>
+              
+          </div>
+          <div class="form-group">
+              <label for="price">Price</label>
+              <input formControlName="price" type="text" class="form-control" id="price" placeholder="Price">
+              <div class="alert alert-danger" *ngIf="price.invalid && price.touched">
+                <p *ngIf="price.errors.required">Price is required. </p>
+  
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="size">Size</label>
+              <input formControlName="size" type="text" class="form-control" id="size" placeholder="Size">
+  
+          </div>
+
+          <button (click)="step = 2">Previous</button>
+          
+          <div class="form-group">
+                <input type="submit"value="submit">
+              </div>
+          
+        </form> 
+        
+  </div>
+  
+  
+  

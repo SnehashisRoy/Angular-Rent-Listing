@@ -39,9 +39,16 @@ export class ListingsService {
       catchError(this.handleError)
   
       );
-  
-    
+  }
 
+  createListing(listing:any){
+    return this.http.post(this.url+'listing/create', listing).pipe(
+
+      map(v => v['data']),
+
+      catchError(this.handleError)
+  
+      );
 
   }
 
@@ -56,6 +63,7 @@ export class ListingsService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
+    console.log(error.error.message);
     // return an observable with a user-facing error message
     return throwError (
       'Something bad happened; please try again later.');

@@ -21,7 +21,6 @@ export class AppData{
     }
 
     updateListings(listing:any){
-        console.log(listing);
         this.listings = this.listings.map(function(el){
             if(el.id == listing.id){
                 return listing;
@@ -30,6 +29,13 @@ export class AppData{
         });
 
     }
+
+    addListing(listing:any){
+         this.listings.push(listing);
+        console.log(this.listings);
+
+    }
+
 
     
 
