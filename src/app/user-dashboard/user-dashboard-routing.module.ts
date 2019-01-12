@@ -7,7 +7,7 @@ import { CreateListingComponent } from './create-listing/create-listing.componen
 
 const routes: Routes = [
   {path:'', component: UserDashboardComponent},
-  {path:'listing/:id', component: EditListingComponent},
+  //{path:'listing/:id', component: EditListingComponent},
   {path:'listing/upload/:id', component: UploadImagesComponent},
   {path:'listing/edit/:id', component: CreateListingComponent},
   

@@ -28,14 +28,11 @@ export class MainInterceptor implements HttpInterceptor {
                                                    .set('Content-Type', 'application/json')});
     // Pass on the cloned request instead of the original request.
     
-
     
     return next.handle(authReq).pipe(
       map((event: HttpEvent<any>)=>{
-          console.log(event);
 
         if(event instanceof HttpResponse){
-          console.log('worked');
             if(event.body.success == false){
               this.toastr.error(event.body.data, 'Error');
                 console.log(event.body.data);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ListingsService } from 'src/app/core/services/listings.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { from , Subscription } from 'rxjs';
 import { filter, flatMap} from 'rxjs/operators';
 import { AppData } from 'src/app/core/app-data/app-data';
@@ -25,7 +25,8 @@ export class CreateListingComponent implements OnInit {
 
   constructor(private listingService: ListingsService,
               private route: ActivatedRoute,
-              private appData: AppData) {
+              private appData: AppData,
+              private router: Router) {
                
                }
 
@@ -105,8 +106,11 @@ export class CreateListingComponent implements OnInit {
   onSubmitStepOne(step: number){
    
     if(this.listing){
-      this.listingService.updateListing(this.listing.id, this.listingStepOne).subscribe(
+      console.log(this.listing.id);
+      console.log(this.listingStepOne);
+      this.listingService.updateListing(this.listing.id, this.listingStepOne.value).subscribe(
         (listing:any) => {
+             console.log('worked here too')
               this.listing = listing.data;
               this.appData.updateListings(listing.data);
               this.step = 2;
@@ -139,7 +143,7 @@ export class CreateListingComponent implements OnInit {
       this.step = 1;
       return;
     }
-    this.listingService.updateListing(this.listing.id, this.listingStepOne).subscribe(
+    this.listingService.updateListing(this.listing.id, this.listingStepTwo.value).subscribe(
       (listing:any) => {
             this.listing = listing.data;
             this.appData.updateListings(listing.data);
@@ -156,10 +160,13 @@ export class CreateListingComponent implements OnInit {
       return;
     }
 
-    this.listingService.updateListing(this.listing.id, this.listingStepOne).subscribe(
+    this.listingService.updateListing(this.listing.id, this.listingStepThree.value).subscribe(
       (listing:any) => {
+          
             this.listing = listing.data;
+            console.log(this.listing);
             this.appData.updateListings(listing.data);
+            this.router.navigate(['/dashboard/listing/upload', this.listing.id])
     
           },
           err => console.log(err)

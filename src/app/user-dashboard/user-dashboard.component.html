@@ -1,10 +1,40 @@
 
-<nav>
-  <a routerLink="/sign-up" >Sign Up</a>
+<!-- <nav>
   <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/dashboard/listing/edit/new">Create</a>
+</nav> -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a routerLink="/dashboard/listing/edit/new">Create</a></li>
+      </ul>
+    </div>
+  </div>
 </nav>
+<div>
+    <li><a routerLink="/dashboard/listing/edit/new">Create</a></li>
+</div>
 
-<li *ngFor="let listing of listings">
-  <a [routerLink] = "['/dashboard/listing/edit', listing.id]" >{{listing.title}}</a> 
-</li>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <div class="list-group">
+            <li *ngFor="let listing of listings" class="list-group-item">
+              <a [routerLink] = "['/dashboard/listing/edit', listing.id]" >{{listing.title}}</a> 
+            </li>
+          </div>
+          
+
+    </div>
+  </div>
+</div>
+
