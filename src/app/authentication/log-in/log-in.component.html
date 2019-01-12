@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+     <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3  margin-top-100 margin-bottom-50">
+       
+       <h3 class="orange text-center">Please Log In</h3>
+     </div>
+  </div>
+  <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                            
+              <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input formControlName="email" type="email" class="form-control" id="email" placeholder="Email">
+                  <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+                    <p *ngIf="email.errors.required">Email is required. </p>
+                    <p *ngIf="email.errors.email"> Must be a valid email. </p>
+
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input formControlName="password" type="password" class="form-control" id="password" placeholder="Password">
+                <div class="alert alert-danger" *ngIf="password.invalid && password.touched">
+                    <p *ngIf="password.errors.required"> Password is required. </p>
+                    <p *ngIf="password.errors.minlength"> Should be of at least 6 characters </p>
+
+                  </div>
+              </div>
+                    <button class="blockbtn" type="submit" >Submit</button>
+              
+            </form>
+            
+      </div>
+
+  </div>
+</div>

@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UploadImagesComponent } from './upload-images/upload-images.component';
 import { ListingsService } from '../core/services/listings.service';
 import { CreateListingComponent } from './create-listing/create-listing.component';
+import { httpInterceptorProviders } from '../core/interceptors';
 
 @NgModule({
   imports: [
@@ -18,6 +19,9 @@ import { CreateListingComponent } from './create-listing/create-listing.componen
     ReactiveFormsModule
   ],
   declarations: [UserDashboardComponent, EditListingComponent, UploadImagesComponent, CreateListingComponent],
-  providers:[ListingsService]
+  providers:[
+    ListingsService,
+    httpInterceptorProviders
+  ]
 })
 export class UserDashboardModule { }

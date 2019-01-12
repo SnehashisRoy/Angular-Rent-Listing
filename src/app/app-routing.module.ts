@@ -7,7 +7,7 @@ const appRoutes: Routes = [
   //{ path: 'sign-up', component:  SignUpComponent},
   // { path: 'detail/:id', component: HeroDetailComponent },
   // { path: 'heroes', component: HeroesComponent }
-  { path: 'sign-up', loadChildren:'./authentication/authentication.module#AuthenticationModule'},
+  { path: 'auth', loadChildren:'./authentication/authentication.module#AuthenticationModule'},
   { path: 'dashboard', loadChildren:'./user-dashboard/user-dashboard.module#UserDashboardModule'}
 ];
  

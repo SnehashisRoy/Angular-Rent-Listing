@@ -1,43 +1,55 @@
 
 
-        <div class="col-md-4 col-md-offset-4">
-            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                  <label for="name">Email address</label>
-                  <input formControlName="name" type="text" class="form-control" id="name" placeholder="Name">
-                  <div class="alert alert-danger" *ngIf="name.invalid && name.touched">Name is required</div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input formControlName="email" type="email" class="form-control" id="email" placeholder="Email">
-                    <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
-                      <p *ngIf="email.errors.required">Email is required. </p>
-                      <p *ngIf="email.errors.email"> Must be a valid email. </p>
-
-                    </div>
-                </div>
-                <div class="form-group">
-                  <label for="password1">Password</label>
-                  <input formControlName="password1" type="password" class="form-control" id="password1" placeholder="Password">
-                  <div class="alert alert-danger" *ngIf="password1.invalid && password1.touched">
-                      <p *ngIf="password1.errors.required"> Password is required. </p>
-                      <p *ngIf="password1.errors.minlength"> Should be of at least 6 characters </p>
-
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password2">Confirm Password</label>
-                    <input formControlName="password2" type="password" class="form-control" id="password2" placeholder="Confirm Password">
-                    <div *ngIf="signupForm.errors?.notMatched" class="alert alert-danger">Password did not match</div>
-                  </div>
+        
+        <div class="container">
+          <div class="row">
+             <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3  margin-top-100 margin-bottom-50">
                
-                <div class="form-group">
-                      <input type="submit"value="submit">
-                    </div>
-                
-              </form>
-              
+               <h3 class="orange text-center">Create Your Account</h3>
+             </div>
+          </div>
+          <div class="row">
+              <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                      <div class="form-group">
+                        <label for="name">Name</label>
+                        <input formControlName="name" type="text" class="form-control" id="name" placeholder="Name">
+                        <div class="alert alert-danger" *ngIf="name.invalid && name.touched">Name is required</div>
+                      </div>
+                      
+                      <div class="form-group">
+                          <label for="email">Email address</label>
+                          <input formControlName="email" type="email" class="form-control" id="email" placeholder="Email">
+                          <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+                            <p *ngIf="email.errors.required">Email is required. </p>
+                            <p *ngIf="email.errors.email"> Must be a valid email. </p>
+      
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="password1">Password</label>
+                        <input formControlName="password1" type="password" class="form-control" id="password1" placeholder="Password">
+                        <div class="alert alert-danger" *ngIf="password1.invalid && password1.touched">
+                            <p *ngIf="password1.errors.required"> Password is required. </p>
+                            <p *ngIf="password1.errors.minlength"> Should be of at least 6 characters </p>
+      
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="password2">Confirm Password</label>
+                          <input formControlName="password2" type="password" class="form-control" id="password2" placeholder="Confirm Password">
+                          <div *ngIf="signupForm.errors?.notMatched" class="alert alert-danger">Password did not match</div>
+                        </div>
+                     
+                            <button class="blockbtn" type="submit" >Submit</button>
+                      
+                    </form>
+                    
+              </div>
+
+          </div>
         </div>
+        
+        
         
    

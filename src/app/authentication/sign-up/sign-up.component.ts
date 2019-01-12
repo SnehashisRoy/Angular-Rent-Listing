@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {  Validators, FormGroup, ValidationErrors, FormControl } from '@angular/forms';
 import { passwordMatchValidator } from '../../shared/validators/password-match.directive';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,13 +18,41 @@ signupForm = new FormGroup({
     password2: new FormControl('', Validators.required)
 
   },{ validators: passwordMatchValidator  });
-
+constructor(
+     private authService: AuthService,
+     private router: Router,
+     private toaster: ToastrService
+){}
 
   ngOnInit() {
   }
 
   onSubmit(){
-    console.log(this.signupForm);
+    if(!this.signupForm.valid){
+      return;
+    }
+    this.authService.registerUser(this.signupForm.value).subscribe(
+      ()=>{
+        this.toaster.success('You are registered successfully. Please log in.')
+        this.router.navigate(['/auth/log-in']);
+      },
+      err => {
+        for (var key in err) {
+          // skip loop if the property is from prototype
+          if (!err.hasOwnProperty(key)) continue;
+      
+          var obj = err[key];
+          for (var prop in obj) {
+              // skip loop if the property is from prototype
+              if(!obj.hasOwnProperty(prop)) continue;
+      
+              // your code
+              this.toaster.error(obj[prop]);
+          }
+      }
+        
+      }
+    )
   }
   
   get name() { return this.signupForm.get('name'); }

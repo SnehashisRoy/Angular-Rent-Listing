@@ -1,6 +1,10 @@
-<p>
-  user-dashboard works!
-</p>
+
+<nav>
+  <a routerLink="/sign-up" >Sign Up</a>
+  <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/dashboard/listing/edit/new">Create</a>
+</nav>
+
 <li *ngFor="let listing of listings">
   <a [routerLink] = "['/dashboard/listing/edit', listing.id]" >{{listing.title}}</a> 
 </li>
