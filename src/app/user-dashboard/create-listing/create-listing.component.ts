@@ -106,11 +106,8 @@ export class CreateListingComponent implements OnInit {
   onSubmitStepOne(step: number){
    
     if(this.listing){
-      console.log(this.listing.id);
-      console.log(this.listingStepOne);
       this.listingService.updateListing(this.listing.id, this.listingStepOne.value).subscribe(
         (listing:any) => {
-             console.log('worked here too')
               this.listing = listing.data;
               this.appData.updateListings(listing.data);
               this.step = 2;
@@ -126,9 +123,9 @@ export class CreateListingComponent implements OnInit {
       this.listingService.createListing(this.listingStepOne.value).subscribe(
         (listing:any) => {
               this.listing = listing;
-              console.log(listing);
               this.appData.addListing(listing);
               this.step = 2;
+              this.router.navigate(['/dashboard/listing/edit', this.listing.id])
       
             },
             err => console.log(err)
@@ -166,7 +163,8 @@ export class CreateListingComponent implements OnInit {
             this.listing = listing.data;
             console.log(this.listing);
             this.appData.updateListings(listing.data);
-            this.router.navigate(['/dashboard/listing/upload', this.listing.id])
+            this.step = 4;
+            //this.router.navigate(['/dashboard/listing/upload', this.listing.id])
     
           },
           err => console.log(err)

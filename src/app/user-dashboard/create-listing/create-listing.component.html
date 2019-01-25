@@ -1,7 +1,3 @@
-<!-- <p *ngIf="listing">
-    {{listing.title}}
-  </p> -->
-  
   
   
   <div class="col-md-4 col-md-offset-4">
@@ -188,6 +184,10 @@
               </div>
           
         </form> 
+        <div class="container" *ngIf="step == 4">
+            <app-upload-images></app-upload-images>
+        </div>
+                
         
   </div>
   

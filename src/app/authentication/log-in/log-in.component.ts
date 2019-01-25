@@ -31,8 +31,8 @@ constructor(
 
     let credential = {
       'grant_type': 'password',
-      'client_id' : 2,
-      'client_secret': 'KLnmXYpKNIDR6nDY2vXiJmJVlFeTYHqwANiuCxKJ',
+      'client_id' : 1,
+      'client_secret': 'ugbvQahxGAwij9a02xeeen7zJFGw44pvBGvmczgG',
       'username' : this.loginForm.value.email,
       'password': this.loginForm.value.password,
       'scope' : '',
