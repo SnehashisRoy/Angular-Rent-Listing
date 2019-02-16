@@ -3,7 +3,7 @@
   <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/dashboard/listing/edit/new">Create</a>
 </nav> -->
-<nav class="navbar navbar-default navbar-fixed-top">
+<!-- <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -19,12 +19,10 @@
       </ul>
     </div>
   </div>
-</nav>
-<div>
-    <li><a routerLink="/dashboard/listing/edit/new">Create</a></li>
-</div>
+</nav> -->
+
   
-<div  class="orange" style="margin: 50px 0 ; text-align: center; vertical-align: middle;">
+<div  class="primary" style="margin: 50px 0 ; text-align: center; vertical-align: middle;">
 
   <h3> List of Rent Listings.</h3>
 
@@ -32,7 +30,8 @@
 </div>
 
 <div class="container">
-  <div class="row">
+    <div class="row">
+      
     <div class="col-xs-12 col-md-6 col-md-offset-3">
         <div class="list-group">
             <li *ngFor="let listing of listings" class="list-group-item">
@@ -42,6 +41,9 @@
           
 
     </div>
+    <a routerLink="/dashboard/listing/edit/new">
+      <div class="col-xs-12 col-md-6 col-md-offset-3 bgsecondary white center10 "><h4>Create a New Listing</h4></div>
+   </a>
   </div>
 </div>
 
