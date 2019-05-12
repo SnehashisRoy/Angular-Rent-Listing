@@ -25,7 +25,7 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
 
 
     if(this.appData.listings.length == 0){
-      this.http.get(environment.apiUrl +'/api/listings').subscribe((listings:any)=>{
+      this.http.get(environment.apiUrl +'api/listings').subscribe((listings:any)=>{
         this.appData.initializeListings(listings.data);
         this.appData.getListings();
       })
