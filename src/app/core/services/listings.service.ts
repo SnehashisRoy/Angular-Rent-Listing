@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListingsService {
 
-  private url:string = 'http://localhost:8085/api/'
+  private url:string = environment.apiUrl+'api/';
 
   constructor(private http : HttpClient) { }
 

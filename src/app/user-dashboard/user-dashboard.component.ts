@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppData } from '../core/app-data/app-data';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -24,7 +25,7 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
 
 
     if(this.appData.listings.length == 0){
-      this.http.get('http://localhost:8085/api/listings').subscribe((listings:any)=>{
+      this.http.get(environment.apiUrl +'/api/listings').subscribe((listings:any)=>{
         this.appData.initializeListings(listings.data);
         this.appData.getListings();
       })

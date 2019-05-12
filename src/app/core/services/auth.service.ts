@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { catchError, tap } from 'rxjs/operators';
 export class AuthService {
 
  
-    private url:string = 'http://localhost:8085/';
+    private url:string = environment.apiUrl;
    
     private loggedIn: boolean = false;
   

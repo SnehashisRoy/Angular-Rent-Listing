@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
             <div *ngFor="let image of listing.images;" class="col-md-2">
-                    <img [src]="'http://localhost:8085'+image.image_url" class="img-thumbnail">
+                    <img [src]=" apiUrl+image.image_url" class="img-thumbnail">
                     <button class="btn btn-danger btn-sm" (click)="removeImage(image.id)">Delete Image</button>
             </div>
 

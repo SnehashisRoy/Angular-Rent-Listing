@@ -6,6 +6,7 @@ import { AppData } from 'src/app/core/app-data/app-data';
 import { from, Subscription} from 'rxjs';
 import { filter, flatMap} from 'rxjs/operators';
 import { ListingsService } from 'src/app/core/services/listings.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-upload-images',
@@ -15,6 +16,8 @@ import { ListingsService } from 'src/app/core/services/listings.service';
 export class UploadImagesComponent implements OnInit {
 
   public uploadImages:FormGroup;
+
+  public apiUrl = environment.apiUrl;
 
   private files: any = {};
 
