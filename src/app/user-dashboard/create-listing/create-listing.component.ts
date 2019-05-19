@@ -58,7 +58,6 @@ export class CreateListingComponent implements OnInit {
         this.listing = listing;
       }
       );
-     this.appData.getListings();
       this.listingStepOne = new FormGroup({
         title:new FormControl (  this.listing ? this.listing.title: '' , Validators.required),
         address :new FormControl(  this.listing ? this.listing.address: '' , Validators.required),

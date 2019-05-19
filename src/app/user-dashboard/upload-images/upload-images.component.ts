@@ -46,7 +46,6 @@ export class UploadImagesComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.appData.getListings();
     this.uploadImages = new FormGroup({
 
       images : new FormArray([])

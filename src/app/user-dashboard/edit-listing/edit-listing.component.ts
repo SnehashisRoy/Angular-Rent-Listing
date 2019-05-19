@@ -43,7 +43,6 @@ export class EditListingComponent implements OnInit, OnDestroy {
   
 
   ngOnInit() {
-    this.appData.getListings();
     this.editListing = new FormGroup({
       title:new FormControl( this.listing.title , Validators.required),
       address :new FormControl( this.listing.address , Validators.required),

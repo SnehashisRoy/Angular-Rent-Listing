@@ -12,29 +12,26 @@ import { environment } from 'src/environments/environment';
 export class UserDashboardComponent implements OnInit, OnDestroy {
   private listings: any=[];
   private dashboardSubscription : Subscription;
+  
 
-  constructor(private appData: AppData, private http: HttpClient) {
-
-    this.dashboardSubscription = this.appData.listingsObs$.subscribe((listings)=>{
-      this.listings = listings;
-      console.log(this.listings);
-    });
-   }
+  constructor(private appData: AppData, private http: HttpClient) {}
 
   ngOnInit() {
 
+    this.dashboardSubscription = this.appData.listingsObs$.subscribe((listings)=>{
+      this.listings = listings;
 
-    if(this.appData.listings.length == 0){
-      this.http.get(environment.apiUrl +'api/listings').subscribe((listings:any)=>{
-        this.appData.initializeListings(listings.data);
-        this.appData.getListings();
-      })
+      if(this.listings.length == 0){
+        this.http.get(environment.apiUrl +'api/listings').subscribe((listings:any)=>{
+          this.listings = listings.data;
+          this.appData.updateToDate(listings.data);
+        });
+      }
+  
 
-    }else{
-      this.appData.getListings();
-
-    }
+    });
   }
+
 
   ngOnDestroy(){
 
