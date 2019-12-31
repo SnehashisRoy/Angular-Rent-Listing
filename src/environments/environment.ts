@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://banglatoronto.ca/'
+  apiUrl: 'http://localhost:8085/'
 };
 
 /*

@@ -24,7 +24,6 @@ export class ListingsService {
   }
 
   updateListing(id: number, listing: any ){
-    console.log('worked here');
     return this.http.post(this.url+'listing/edit/'+ id , listing).pipe(
 
     catchError(this.handleError)

@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { from , Subscription } from 'rxjs';
 import { filter, flatMap} from 'rxjs/operators';
 import { AppData } from 'src/app/core/app-data/app-data';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-create-listing',
   templateUrl: './create-listing.component.html',
@@ -26,7 +26,8 @@ export class CreateListingComponent implements OnInit {
   constructor(private listingService: ListingsService,
               private route: ActivatedRoute,
               private appData: AppData,
-              private router: Router) {
+              private router: Router,
+              private toaster: ToastrService) {
                
                }
 
@@ -103,12 +104,15 @@ export class CreateListingComponent implements OnInit {
   
 
   onSubmitStepOne(step: number){
-   
+
+    // trigger validation on submit
+    this.markFormGroupTouched(this.listingStepOne);
+
     if(this.listing){
       this.listingService.updateListing(this.listing.id, this.listingStepOne.value).subscribe(
         (listing:any) => {
-              this.listing = listing.data;
-              this.appData.updateListings(listing.data);
+              this.listing = listing;
+              this.appData.updateListings(listing);
               this.step = 2;
       
             },
@@ -122,6 +126,7 @@ export class CreateListingComponent implements OnInit {
       this.listingService.createListing(this.listingStepOne.value).subscribe(
         (listing:any) => {
               this.listing = listing;
+              console.log(this.listing);
               this.appData.addListing(listing);
               this.step = 2;
               this.router.navigate(['/dashboard/listing/edit', this.listing.id])
@@ -134,6 +139,14 @@ export class CreateListingComponent implements OnInit {
   }
 
   onSubmitStepTwo(step:number){
+
+     // trigger validation on submit
+     this.markFormGroupTouched(this.listingStepTwo);
+
+     if(!this.listingStepTwo.valid){
+      return;
+    }
+
     
     if(!this.listing){
       this.step = 1;
@@ -141,8 +154,8 @@ export class CreateListingComponent implements OnInit {
     }
     this.listingService.updateListing(this.listing.id, this.listingStepTwo.value).subscribe(
       (listing:any) => {
-            this.listing = listing.data;
-            this.appData.updateListings(listing.data);
+            this.listing = listing;
+            this.appData.updateListings(listing);
             this.step = 3;
     
           },
@@ -159,12 +172,10 @@ export class CreateListingComponent implements OnInit {
     this.listingService.updateListing(this.listing.id, this.listingStepThree.value).subscribe(
       (listing:any) => {
           
-            this.listing = listing.data;
-            console.log(this.listing);
-            this.appData.updateListings(listing.data);
+            this.listing = listing;
+            this.appData.updateListings(listing);
             this.step = 4;
-            //this.router.navigate(['/dashboard/listing/upload', this.listing.id])
-    
+            this.toaster.success('You successfully created the add. Please add pictures to your ad.');
           },
           err => console.log(err)
     )
@@ -176,6 +187,16 @@ export class CreateListingComponent implements OnInit {
 
     
    }
+
+   private markFormGroupTouched(formGroup: FormGroup) {
+    (<any>Object).values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+
+      if (control.controls) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
 
 
 }

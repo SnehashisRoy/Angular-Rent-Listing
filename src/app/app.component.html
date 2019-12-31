@@ -1,13 +1,24 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-<div class="bgprimary text-center white" style=" padding: 20px 0; letter-spacing: 3px;font-weight: bold;font-size: 150%;">
-    BanglaToronto
+<div class="bgprimary text-center white" style="display: flex; justify-content: space-around;">
+  <div>
 
+  </div>
+  <div style="font-size: 24px; padding: 25px; margin-left: 30px;">
+      BanglaToronto
+  </div>
+  <div style="padding: 25px;">
+      <div *ngIf="loggedIn">
+          <div (click)="logOut()"><i class="fas fa-sign-out-alt" style="color: white; cursor: pointer;"></i></div>
+        </div>
+  </div>
+    
+    
     
 
   </div>
+
   
-  <a routerLink="/auth/log-out" > Log Out</a>
 
 <router-outlet></router-outlet>
 

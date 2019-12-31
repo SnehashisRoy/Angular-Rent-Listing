@@ -2,25 +2,20 @@ import{Observable,  BehaviorSubject} from 'rxjs';
 
 export class AppData{
 
-    //public listings: any = [] ;
+    // store listings
+
     private listingsSource = new BehaviorSubject<any>([]);
 
     listingsObs$ = this.listingsSource.asObservable();
 
-    updateToDate(data){
-        this.listingsSource.next(data);
-
-    }
-
-
-    
-
-    // getListings(){
-    //     this.listingsSource.next(this.listings.slice(0));
-
-    // }
 
     updateListings(listing:any){
+
+        if(Array.isArray(listing)){
+            this.listingsSource.next(listing);
+            return;
+
+        }
         let data = this.listingsSource.value.map(function(el){
             if(el.id == listing.id){
                 return listing;
@@ -28,23 +23,28 @@ export class AppData{
             return el;
         });
 
+        this.listingsSource.next(data);
+
         
 
     }
 
     addListing(listing:any){
-        let data = this.listingsSource.value.push(listing);
-        this.listingsSource.next(data);
+         this.listingsSource.value.push(listing);
+        this.listingsSource.next(this.listingsSource.value);
 
 
     }
 
+    //store authenticated user 
 
-    
+    private logInStatusSource = new BehaviorSubject<any>(false);
 
-    
-   
+    logInStatusObs$ = this.logInStatusSource.asObservable();
 
+    updateLogInStatus(){
+        this.logInStatusSource.next(!this.logInStatusSource.value);
+    }
 
 
 

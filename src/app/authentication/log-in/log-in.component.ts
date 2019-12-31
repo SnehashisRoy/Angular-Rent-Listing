@@ -3,6 +3,7 @@ import {  Validators, FormGroup, ValidationErrors, FormControl } from '@angular/
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AppData } from 'src/app/core/app-data/app-data';
 
 @Component({
   selector: 'app-log-in',
@@ -19,6 +20,7 @@ export class LogInComponent implements OnInit {
 constructor(
      private authService: AuthService,
      private router: Router,
+     private appData: AppData,
      private toaster: ToastrService
 ){}
 
@@ -40,6 +42,7 @@ constructor(
 
      this.authService.loginUser(credential).subscribe(
        (res) =>{
+      this.appData.updateLogInStatus();
       this.router.navigate(['/dashboard']);
       this.toaster.success('You are registered successfully. Please log in.');
     },

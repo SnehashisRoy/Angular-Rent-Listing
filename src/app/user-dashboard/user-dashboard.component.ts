@@ -21,10 +21,11 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
     this.dashboardSubscription = this.appData.listingsObs$.subscribe((listings)=>{
       this.listings = listings;
 
+
       if(this.listings.length == 0){
         this.http.get(environment.apiUrl +'api/listings').subscribe((listings:any)=>{
-          this.listings = listings.data;
-          this.appData.updateToDate(listings.data);
+          this.listings = listings;
+          this.appData.updateListings(listings); //update app data
         });
       }
   

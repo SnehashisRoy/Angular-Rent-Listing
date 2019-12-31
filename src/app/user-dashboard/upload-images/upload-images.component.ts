@@ -114,6 +114,13 @@ export class UploadImagesComponent implements OnInit {
         (listing:any) => {
          this.listing = listing.data;
         this.appData.updateListings(listing.data);
+
+        // clear up selected files
+        while (this.images.length !== 0) {
+          this.images.removeAt(0);
+          delete this.files[0];
+        }
+        console.log(this.files);
       }, 
       err => console.log(err)
     )

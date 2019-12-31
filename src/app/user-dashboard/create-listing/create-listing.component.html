@@ -1,9 +1,11 @@
-  
+  <div class="jumbotron text-center">
+    <h3>Create or Edit your ad</h3>
+  </div>
   
   <div class="col-md-4 col-md-offset-4">
       <form [formGroup]="listingStepOne" (ngSubmit)="onSubmitStepOne(1)" *ngIf="step == 1">
           <div class="form-group">
-            <label for="title">Email address</label>
+            <label for="title">Title</label>
             <input formControlName="title" type="text" class="form-control" id="title" placeholder="Title">
             <div class="alert alert-danger" *ngIf="title.invalid && title.touched">Name is required</div>
           </div>
@@ -20,7 +22,7 @@
               <label for="city">City</label>
               <input formControlName="city" type="text" class="form-control" id="city" placeholder="City">
               <div class="alert alert-danger" *ngIf="city.invalid && city.touched">
-                <p *ngIf="City.errors.required">City is required. </p>
+                <p *ngIf="city.errors.required">City is required. </p>
   
               </div>
           </div>
@@ -28,12 +30,12 @@
               <label for="postal">Postal Code</label>
               <input formControlName="postal" type="text" class="form-control" id="postal" placeholder="Postal Code">
               <div class="alert alert-danger" *ngIf="postal.invalid && postal.touched">
-                <p *ngIf="postal.errors.required">Postal Conde is required. </p>
+                <p *ngIf="postal.errors.required">Postal Code is required. </p>
   
               </div>
           </div>
-          <div class="form-group">
-              <input type="submit"value="Next">
+          <div style="display:flex; justify-content: flex-end;">
+              <input class="btn btn-success btn-sm" type="submit" value="Next">
             </div>
       </form>
       <form [formGroup]="listingStepTwo" (ngSubmit)="onSubmitStepTwo(2)" *ngIf="step == 2">
@@ -82,9 +84,10 @@
     
                 </div>
           </div>
-          <button (click)="step = 1">Previous</button>
-          <div class="form-group">
-              <input type="submit"value="submit">
+          
+          <div style="display: flex; justify-content: space-between;">
+              <button class="btn btn-success btn-sm" (click)="step = 1">Previous</button>
+              <input class="btn btn-success btn-sm" type="submit"value="Next">
             </div>
       </form>
       <form [formGroup]="listingStepThree" (ngSubmit)="onSubmitStepThree(3)" *ngIf="step == 3">
@@ -177,10 +180,11 @@
   
           </div>
 
-          <button (click)="step = 2">Previous</button>
           
-          <div class="form-group">
-                <input type="submit"value="submit">
+          
+          <div style="display: flex; justify-content: space-between;">
+              <button class="btn btn-success btn-sm" (click)="step = 2">Previous</button>
+                <input class="btn btn-success btn-sm"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       type="submit"value="submit">
               </div>
           
         </form> 

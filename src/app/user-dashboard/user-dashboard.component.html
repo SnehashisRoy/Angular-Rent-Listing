@@ -24,7 +24,7 @@
   
 <div  class="primary" style="margin: 50px 0 ; text-align: center; vertical-align: middle;">
 
-  <h3> List of Rent Listings.</h3>
+  <h3> Your rental Ads</h3>
 
 
 </div>
@@ -35,7 +35,16 @@
     <div class="col-xs-12 col-md-6 col-md-offset-3">
         <div class="list-group">
             <li *ngFor="let listing of listings" class="list-group-item">
-              <a [routerLink] = "['/dashboard/listing/edit', listing.id]" >{{listing.title}}</a> 
+              <div class="row">
+                <div class="col-xs-9">
+                    <h4>{{listing.title}}</h4> 
+                </div>
+                <div class="col-xs-3 text-center">
+                    <a [routerLink] = "['/dashboard/listing/edit', listing.id]" ><i class="far fa-edit"></i></a> 
+                  
+                  </div>
+
+              </div>
             </li>
           </div>
           
